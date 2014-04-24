@@ -1,0 +1,22 @@
+#!/bin/bash
+
+while getopts i:o: opt; do
+  case $opt in
+  i)
+      INPUT=$OPTARG
+      ;;
+      
+  o)
+     OUTPUT=$OPTARG
+     ;;
+  esac
+done
+
+if [ "x${INPUT}" != "x" ] && [ "x${OUTPUT}" != "x" ]
+  then
+    cat $INPUT | tr "\n" " " | tr -d " " > $OUTPUT
+  else
+    echo "Missing flag input/ouput. Correct syntax is 'onesie -i <input file> -o <output file>'"
+  fi
+  exit 0
+done
